@@ -1,0 +1,4128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:image" content="https://blair-welding.stefanswebdesigns.workers.dev/og.jpg" />
+	<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blair-welding.stefanswebdesigns.workers.dev/" />
+<meta property="og:title" content="Blair Welding & Fabrication | Eastern Kentucky" />
+<meta property="og:description" content="Professional mobile welding and fabrication serving Eastern Kentucky and surrounding areas. We come straight to your job site, farm, or shop." />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+
+ <title>Blair Welding & Fabrication | Eastern Kentucky</title>
+ 
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+
+</head>
+<body>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Chakra+Petch:wght@600;700&display=swap');
+
+html {
+  scroll-behavior: smooth; 
+  scroll-padding-top: 110px; /* Accounts for header height + spacing */
+}
+
+/* ================= SYSTEM DESIGN TOKENS ================= */
+:root {
+  --bg: #000;
+  --text: #F4F4F5;
+  --text-muted: #cbcbcb;
+  --text-social: #cbcbcb;
+  --accent: #F5A623;           
+  --accent-hover: #fff;        
+  --steel: rgba(255, 255, 255, 0);
+  --glass: rgba(18, 18, 18, 1);
+  --glass-scrolled: rgba(18, 18, 18, 1);
+  --border: rgba(255, 255, 255, 0.15);
+  --bg-card: #0b0b0b;
+  --focus-ring: #F5A623;
+  
+  /* DESKTOP BUTTON TOKENS */
+  --btn-bg: #F5A623;
+  --btn-border: rgba(255, 255, 255, 0);
+  
+  /* CUT CORNER TOKENS */
+  --cut-lg: 18px;
+  --cut-sm: 10px;
+  --cut-xs: 6px;
+  --grit-texture: url("images/texture.png");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 500;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+body.lock-scroll {
+  overflow: hidden;
+}
+
+/* ================= ACCESSIBILITY FOCUS STATES ================= */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ================= FLOATING CUT-CORNER HEADER ================= */
+#mainHeader {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  z-index: 9999;
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), top 0.3s ease;
+}
+
+/* Glass Background Layer with Blur & 4-Corner Cut */
+#mainHeader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glass);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: -1;
+  clip-path: polygon(
+    var(--cut-lg) 0%, 
+    calc(100% - var(--cut-lg)) 0%, 
+    100% var(--cut-lg), 
+    100% calc(100% - var(--cut-lg)), 
+    calc(100% - var(--cut-lg)) 100%, 
+    var(--cut-lg) 100%, 
+    0% calc(100% - var(--cut-lg)), 
+    0% var(--cut-lg)
+  );
+  transition: background 0.3s ease;
+}
+
+#mainHeader.scrolled {
+  top: 12px;
+  height: 68px;
+}
+
+#mainHeader.scrolled::before {
+  background: var(--glass-scrolled);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+}
+
+/* ================= HEADER INNER ================= */
+.header-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px 0 28px; 
+  position: relative;
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  height: calc(100% + 36px); 
+  position: relative;
+  bottom: -18px;            
+  overflow: visible;
+  padding: 8px 0 4px 0;
+  z-index: 999;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mainHeader.scrolled .logo {
+  height: calc(100% + 28px);
+  bottom: -14px;
+}
+
+#mainHeader.scrolled .logo-img {
+  height: 100%;
+}
+
+/* ================= DESKTOP NAV ================= */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav > ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  align-items: center;
+}
+
+.desktop-nav > ul > li {
+  position: relative;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  transition: color .2s ease, background-color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.desktop-nav > ul > li:hover > a,
+.desktop-nav > ul > li:focus-within > a {
+  color: var(--accent);
+  background: rgba(40, 40, 40, 1);
+}
+
+.arrow-icon {
+  width: 12px;
+  height: 12px;
+  fill: var(--accent);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop-nav li:hover .arrow-icon,
+.desktop-nav li:focus-within .arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* DROPDOWN MENU (4 CORNERS CUT) */
+.desktop-nav .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-card);
+  padding: 8px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  min-width: 260px;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+}
+
+.desktop-nav li:hover > .dropdown-menu,
+.desktop-nav li:focus-within > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(8px);
+}
+
+.desktop-nav .dropdown-menu li + li {
+  margin-top: 2px;
+}
+
+/* INDIVIDUAL DROPDOWN ITEMS (ALL 4 CORNERS CLIPPED) */
+.desktop-nav .dropdown-menu a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 14px 20px;
+  text-transform: none;
+  letter-spacing: 0;
+  width: 100%;
+  display: block;
+  color: var(--text-muted);
+}
+
+.desktop-nav .dropdown-menu a:hover,
+.desktop-nav .dropdown-menu a:focus-visible {
+  color: var(--accent);
+  background: rgba(40, 40, 40, 1);
+}
+
+.desktop-nav .dropdown-menu .all-services-link {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.desktop-nav .dropdown-menu .featured-divider {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+/* ================= RIGHT ZONE UTILITIES ================= */
+.right-zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* DESKTOP PHONE LINK */
+.phone-link {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.phone-link:hover {
+  color: var(--accent);
+}
+
+.phone-link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+
+/* Get a quote BUTTON (DESKTOP - ALL 4 CORNERS CUT) */
+.book-btn {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  background: var(--btn-bg);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  color: #0A0A0B;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  transition: background-color .25s ease, transform .2s ease;
+}
+
+.book-btn:hover {
+  background: var(--accent-hover);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+}
+
+.book-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+}
+
+/* LARGER MENU ICON */
+.menu-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #FFFFFF;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 30px;
+  background: var(--accent);
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
+}
+
+#mainHeader.mobile-open .menu-icon span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+#mainHeader.mobile-open .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#mainHeader.mobile-open .menu-icon span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ================= MOBILE OVERLAY (FROSTED BLUR & 4 CORNERS CUT) ================= */
+.nav-dropdown {
+  position: fixed;
+  top: 96px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 110px);
+  background: var(--glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 24px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  clip-path: polygon(
+    var(--cut-lg) 0%, 
+    calc(100% - var(--cut-lg)) 0%, 
+    100% var(--cut-lg), 
+    100% calc(100% - var(--cut-lg)), 
+    calc(100% - var(--cut-lg)) 100%, 
+    var(--cut-lg) 100%, 
+    0% calc(100% - var(--cut-lg)), 
+    0% var(--cut-lg)
+  );
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.35s ease,
+              top 0.3s ease,
+              height 0.3s ease;
+  pointer-events: none;
+}
+
+#mainHeader.scrolled .nav-dropdown {
+  top: 80px;
+}
+
+#mainHeader.mobile-open .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-utilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* MOBILE PHONE BUTTON (ALL 4 CORNERS CUT) */
+.mobile-phone-link {
+  font-family: "Chakra Petch", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  transition: background-color 0.25s ease;
+}
+
+.mobile-phone-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+
+/* GET A QUOTE BUTTON (MOBILE - ALL 4 CORNERS CUT) */
+.mobile-book-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 28px;
+  background: var(--accent);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  color: #0A0A0B;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.mobile-book-link:active {
+  transform: scale(0.98);
+  background: var(--accent-hover);
+  background-image: var(--grit-texture);
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+}
+
+.mobile-book-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.nav-links > li > a {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links > li > a:hover {
+  color: var(--accent);
+  background: rgba(40, 40, 40, 1);
+}
+
+/* ACCORDION ANIMATION FOR MOBILE SUBMENUS */
+.nav-links .dropdown-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links .has-submenu.open .dropdown-wrapper { 
+  grid-template-rows: 1fr; 
+}
+
+.nav-links .has-submenu.open .arrow-icon { 
+  transform: rotate(180deg); 
+}
+
+.nav-dropdown .dropdown-menu {
+  overflow: hidden;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+}
+
+.nav-links .has-submenu.open .dropdown-menu { 
+  padding: 8px 0 8px 12px; 
+}
+
+.nav-links .dropdown-menu a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-transform: none;
+  font-weight: 600;
+  background: transparent;
+  padding: 14px 20px;
+  display: block;
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+}
+
+.nav-links .dropdown-menu a:hover {
+  color: var(--accent);
+  background: rgba(40, 40, 40, 1);
+}
+
+.nav-links .dropdown-menu .all-services-link {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.nav-links .dropdown-menu .featured-divider {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+/* MOBILE SOCIAL LINKS STYLE (4 CORNERS CUT) */
+.nav-socials {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.nav-socials .nav-facebook {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  clip-path: polygon(
+    var(--cut-sm) 0%, 
+    calc(100% - var(--cut-sm)) 0%, 
+    100% var(--cut-sm), 
+    100% calc(100% - var(--cut-sm)), 
+    calc(100% - var(--cut-sm)) 100%, 
+    var(--cut-sm) 100%, 
+    0% calc(100% - var(--cut-sm)), 
+    0% var(--cut-sm)
+  );
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-socials .nav-facebook:hover {
+  color: var(--accent);
+  background: rgba(40, 40, 40, 1);
+}
+
+.nav-socials .nav-facebook svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent);
+}
+
+/* ================= MEDIA QUERIES ================= */
+@media (max-width: 1390px) {
+  .desktop-nav { display: none; }
+  .right-zone .desktop-only-util { display: none; }
+  #mainHeader {
+    width: calc(100% - 24px);
+    top: 12px;
+  }
+}
+
+@media (min-width: 1391px) {
+  .menu-icon { display: none; }
+  .nav-dropdown { display: none !important; }
+  #mainHeader.scrolled .header-inner {
+    padding-right: 14px;
+  }
+}
+</style>
+
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Home">
+      <img src="images/Logo2.png" class="logo-img" alt="Blair Welding & Fabrication Logo" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <ul>
+        <li class="has-submenu">
+          <a href="services.html" aria-haspopup="true" aria-expanded="false">Services 
+            <svg class="arrow-icon" viewBox="0 0 448 512" aria-hidden="true"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="featured-divider"><a href="services.html" class="all-services-link">All Services &rarr;</a></li>
+            <li><a href="services.html#mobile-welding">Mobile welding</a></li>
+            <li><a href="services.html#structural-welding">Structural welding</a></li>
+            <li><a href="services.html#pipe-pipeline">Pipe &amp; pipeline welding</a></li>
+            <li><a href="services.html#custom-fabrication">Custom fabrication</a></li>
+            <li><a href="services.html#pipe-fence-gates">Pipe fence &amp; gates</a></li>
+            <li><a href="services.html#farm-heavy-equipment">Farm &amp; heavy equipment repairs</a></li>
+            <li><a href="services.html#emergency-repairs">Emergency welding repairs</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="service-areas.html" aria-haspopup="true" aria-expanded="false">Areas We Serve 
+            <svg class="arrow-icon" viewBox="0 0 448 512" aria-hidden="true"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="featured-divider"><a href="service-areas.html" class="all-services-link">All service Areas &rarr;</a></li>
+            <li><a href="service-areas.html#johnson-county">Johnson County</a></li>
+            <li><a href="service-areas.html#floyd-county">Floyd County</a></li>
+            <li><a href="service-areas.html#lawrence-county">Lawrence County</a></li>
+            <li><a href="service-areas.html#martin-county">Martin County</a></li>
+            <li><a href="service-areas.html#magoffin-county">Magoffin County</a></li>
+            <li><a href="service-areas.html#pike-county">Pike County</a></li>
+            <li><a href="service-areas.html#boyd-county">Boyd County</a></li>
+            <li><a href="service-areas.html#greenup-county">Greenup County</a></li>
+          </ul>
+        </li>
+        <li><a href="gallery.html">Gallery</a></li>
+
+        <li><a href="#about">About</a></li>
+		<li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="right-zone">
+      <a href="tel:6063310767" class="phone-link desktop-only-util">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        606-331-0767
+      </a>
+
+      <a href="quote.html" rel="noopener noreferrer" class="book-btn desktop-only-util">
+        Get a quote
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <button class="menu-icon" id="menuToggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-dropdown" aria-label="Mobile Navigation">
+    <div class="mobile-utilities">
+      <a href="tel:6063310767" class="mobile-phone-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+         606-331-0767
+      </a>
+
+      <a href="quote.html" rel="noopener noreferrer" class="mobile-book-link">
+        Get a quote
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <ul class="nav-links">
+      <li class="has-submenu">
+        <a aria-expanded="false">Services
+          <svg class="arrow-icon" viewBox="0 0 448 512" aria-hidden="true"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+        </a>
+        <div class="dropdown-wrapper"> 
+          <ul class="dropdown-menu">
+            <li class="featured-divider"><a href="services.html" class="mobile-nav-close all-services-link">All Services &rarr;</a></li>
+            <li><a href="services.html#mobile-welding" class="mobile-nav-close">Mobile welding</a></li>
+            <li><a href="services.html#structural-welding" class="mobile-nav-close">Structural welding</a></li>
+            <li><a href="services.html#pipe-pipeline" class="mobile-nav-close">Pipe &amp; pipeline welding</a></li>
+            <li><a href="services.html#custom-fabrication" class="mobile-nav-close">Custom fabrication</a></li>
+            <li><a href="services.html#pipe-fence-gates" class="mobile-nav-close">Pipe fence &amp; gates</a></li>
+            <li><a href="services.html#farm-heavy-equipment" class="mobile-nav-close">Farm &amp; heavy equipment repairs</a></li>
+            <li><a href="services.html#emergency-repairs" class="mobile-nav-close">Emergency welding repairs</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="has-submenu">
+        <a aria-expanded="false">Areas We Serve
+          <svg class="arrow-icon" viewBox="0 0 448 512" aria-hidden="true"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+        </a>
+        <div class="dropdown-wrapper"> 
+          <ul class="dropdown-menu">
+            <li class="featured-divider"><a href="service-areas.html" class="mobile-nav-close all-services-link">All service Areas &rarr;</a></li>
+            <li><a href="service-areas.html#johnson-county" class="mobile-nav-close">Johnson County</a></li>
+            <li><a href="service-areas.html#floyd-county" class="mobile-nav-close">Floyd County</a></li>
+            <li><a href="service-areas.html#lawrence-county" class="mobile-nav-close">Lawrence County</a></li>
+            <li><a href="service-areas.html#martin-county" class="mobile-nav-close">Martin County</a></li>
+            <li><a href="service-areas.html#magoffin-county" class="mobile-nav-close">Magoffin County</a></li>
+            <li><a href="service-areas.html#pike-county" class="mobile-nav-close">Pike County</a></li>
+            <li><a href="service-areas.html#boyd-county" class="mobile-nav-close">Boyd County</a></li>
+            <li><a href="service-areas.html#greenup-county" class="mobile-nav-close">Greenup County</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li><a href="gallery.html" class="mobile-nav-close">Gallery</a></li>
+
+      <li><a href="#about" class="mobile-nav-close">About</a></li>
+	  <li><a href="#faq" class="mobile-nav-close">FAQ</a></li>
+    </ul>
+
+    <ul class="nav-socials">
+      <li>
+        <a href="https://www.facebook.com/profile.php?id=61593058877699" target="_blank" rel="noopener noreferrer" class="nav-facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Follow us on Facebook
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+(function() {
+  const header = document.getElementById('mainHeader');
+  const toggle = document.getElementById('menuToggle');
+  const body = document.body;
+
+  // Header scroll class toggle
+  window.addEventListener('scroll', () => {
+    if (header) {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }
+  });
+
+  // Close Mobile Overlay
+  const closeMobileMenu = () => {
+    if (header.classList.contains('mobile-open')) {
+      header.classList.remove('mobile-open');
+      body.classList.remove('lock-scroll');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  // Hamburger button toggle
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpening = !header.classList.contains('mobile-open');
+      header.classList.toggle('mobile-open');
+      toggle.setAttribute('aria-expanded', isOpening.toString());
+      body.classList.toggle('lock-scroll', isOpening);
+    });
+  }
+
+  // Mobile Dropdown Accordion Toggle
+  const mobileSubmenuLinks = header.querySelectorAll('.nav-links .has-submenu > a');
+  mobileSubmenuLinks.forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = anchor.parentElement;
+      const isOpen = parent.classList.toggle('open');
+      anchor.setAttribute('aria-expanded', isOpen.toString());
+    });
+  });
+
+  // Close mobile menu ONLY when clicking actual destination links
+  const navActionLinks = header.querySelectorAll('.mobile-nav-close');
+  navActionLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Reset menu on resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1390 && header.classList.contains('mobile-open')) {
+      closeMobileMenu();
+    }
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 180px);
+    min-height: 420px;
+    overflow: hidden;
+
+  }
+
+  .hero-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 100px 8% 50px;
+    text-align: left;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  /* Dark fade strictly on the left behind the text for easy visibility */
+  .hero-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.7) 42%,
+      rgba(0, 0, 0, 0) 75%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 620px;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+    color: var(--text);
+  }
+
+  .hero-headline {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 14px 0;
+    color: #fff;
+    text-align: left;
+  }
+
+  .hero-subline {
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+    color: #efefef;
+    opacity: 0.92;
+    text-align: left;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 14px;
+    align-items: center;
+  }
+
+  /* Shared cut-corner look matching the header buttons */
+  .hero-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 22px;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+    transition: background-color .25s ease, transform .2s ease, opacity .2s ease;
+    cursor: pointer;
+  }
+
+  /* Main Button: Matches header .book-btn exactly with grit texture */
+  .hero-btn-main {
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+  }
+
+  .hero-btn-main:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .hero-btn-main svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+
+  .hero-btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    font-size: 0.9rem;
+	  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+   transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+	
+  }
+
+  .hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent);
+  }
+
+  .hero-btn-secondary svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.2;
+  }
+
+  /* Bottom Center Dots */
+  .hero-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+  }
+
+  .hero-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .hero-dot.active {
+    background-color: #fff;
+    transform: scale(1.15);
+  }
+
+  /* Bottom Right Pause/Play Button with Perfect SVG Centering */
+  .hero-pause-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero-pause-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .hero-pause-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+    border-color: #fff;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      height: calc(100vh - 140px);
+    }
+    
+    .hero-slide {
+      padding: 110px 6% 60px;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .hero-slide::after {
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.6) 60%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+    }
+
+    .hero-pause-btn {
+      bottom: 14px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .hero-pause-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>
+
+<section class="hero-banner" aria-label="Featured Hero Banner">
+  <div class="hero-slides">
+    
+    <!-- Slide 1 -->
+    <div class="hero-slide active">
+      <img src="images/Banner.jpg" alt="Slide 1" class="hero-bg" />
+      <div class="hero-content">
+        <h1 class="hero-headline">Blair Welding & Fabrication</h1>
+        <p class="hero-subline">Professional mobile welding and fabrication serving Eastern Kentucky and surrounding areas. We come straight to your job site, farm, or shop.</p>
+        <div class="hero-actions">
+          <a href="quote.html" class="hero-btn hero-btn-main">
+            Get a quote
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:6063310767" class="hero-btn hero-btn-secondary">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            606-331-0767
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide">
+      <img src="images/Banner2.jpg" alt="Slide 2" class="hero-bg" />
+      <div class="hero-content">
+        <h2 class="hero-headline">Heavy Equipment, Structural & Pipeline Repairs</h2>
+        <p class="hero-subline">Don't let broken steel shut you down. We deliver dependable, field-tested emergency and on-site repairs across Eastern Kentucky we show up and get the job done right.</p>
+        <div class="hero-actions">
+          <a href="quote.html" class="hero-btn hero-btn-main">
+            Get a quote
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:6063310767" class="hero-btn hero-btn-secondary">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            606-331-0767
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide">
+      <img src="images/Banner3.jpg" alt="Slide 3" class="hero-bg" />
+      <div class="hero-content">
+        <h2 class="hero-headline">Custom Metal Fabrication Built to Last.</h2>
+        <p class="hero-subline">From custom pipe fences and gates to heavy-duty trailers and one-of-a-kind steel projects, if you can dream it up, we can build it from the ground up.</p>
+        <div class="hero-actions">
+          <a href="quote.html" class="hero-btn hero-btn-main">
+            Get a quote
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:6063310767" class="hero-btn hero-btn-secondary">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            606-331-0767
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Center Dots -->
+  <div class="hero-dots" role="tablist" aria-label="Slide navigation">
+    <button type="button" class="hero-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+    <button type="button" class="hero-dot" aria-label="Go to slide 2" data-slide="1"></button>
+    <button type="button" class="hero-dot" aria-label="Go to slide 3" data-slide="2"></button>
+  </div>
+
+  <!-- Bottom Right Pause/Play SVG Button -->
+  <button type="button" class="hero-pause-btn" id="heroPauseBtn" aria-label="Pause slideshow" title="Pause slideshow">
+    <!-- Pause Icon SVG -->
+    <svg id="pauseIconSvg" viewBox="0 0 24 24">
+      <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+      <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+    </svg>
+  </button>
+</section>
+
+<script>
+  (function () {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    const pauseBtn = document.getElementById('heroPauseBtn');
+    let currentIndex = 0;
+    let autoPlayTimer;
+    let isPaused = false;
+
+    // SVG paths for pause and play icons
+    const pauseSvgHTML = '<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>';
+    const playSvgHTML = '<polygon points="6,4 20,12 6,20"></polygon>';
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      if (!isPaused) {
+        const next = (currentIndex + 1) % slides.length;
+        showSlide(next);
+      }
+    }
+
+    function startTimer() {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(nextSlide, 2700);
+    }
+
+    function resetTimer() {
+      if (!isPaused) {
+        startTimer();
+      }
+    }
+
+    // Dot click events
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetIndex = parseInt(dot.getAttribute('data-slide'), 10);
+        showSlide(targetIndex);
+        resetTimer();
+      });
+    });
+
+    // Pause / Play toggle event
+    pauseBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      const svgContainer = pauseBtn.querySelector('svg');
+      if (isPaused) {
+        clearInterval(autoPlayTimer);
+        svgContainer.innerHTML = playSvgHTML;
+        pauseBtn.setAttribute('aria-label', 'Play slideshow');
+        pauseBtn.setAttribute('title', 'Play slideshow');
+      } else {
+        startTimer();
+        svgContainer.innerHTML = pauseSvgHTML;
+        pauseBtn.setAttribute('aria-label', 'Pause slideshow');
+        pauseBtn.setAttribute('title', 'Pause slideshow');
+      }
+    });
+
+    startTimer();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .about-section {
+    position: relative;
+    width: 100%;
+    padding: 100px 8%;
+    background-color: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  .about-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* Left Column: Content */
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+
+  /* Big Yellow Headline with Grit Texture Clipped Inside the Letters */
+  .about-headline {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0;
+    
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .about-subheadline {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+  }
+
+  .about-divider {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+    margin: 0 0 10px 0;
+  }
+
+  .about-text {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .about-text strong {
+    color: var(--text);
+  }
+
+  /* Right Column: Photo with 4 Corners Cut */
+  .about-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+  }
+
+  .about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    clip-path: polygon(
+      var(--cut-lg) 0%, 
+      calc(100% - var(--cut-lg)) 0%, 
+      100% var(--cut-lg), 
+      100% calc(100% - var(--cut-lg)), 
+      calc(100% - var(--cut-lg)) 100%, 
+      var(--cut-lg) 100%, 
+      0% calc(100% - var(--cut-lg)), 
+      0% var(--cut-lg)
+    );
+    border: 2px solid var(--border);
+  }
+
+  /* Responsive layout for tablets/mobiles */
+  @media (max-width: 992px) {
+    .about-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .about-image-wrapper {
+      min-height: 360px;
+      order: -1; 
+    }
+  }
+</style>
+
+<section class="about-section" id="about">
+  <div class="about-container">
+    
+    <!-- Left Side: Text Content -->
+    <div class="about-content">
+      <h2 class="about-headline">About Aaron &amp; Blair Welding &amp; Fab</h2>
+      <h3 class="about-subheadline">No Shortcuts. No Excuses. Just Hard Work.</h3>
+      <div class="about-divider"></div>
+      
+      <p class="about-text">
+        My name is <strong>Aaron Blair</strong>, and I’m the owner and operator of <strong>Blair Welding &amp; Fab</strong>.
+      </p>
+      
+      <p class="about-text">
+        I started Blair Welding &amp; Fab because I wanted to take the experience and skills I’ve gained over the years and build something of my own. I’ve spent a lot of time working in the field, around heavy equipment, structural steel, pipe, and pipeline work. Along the way, I realized there was a need for a dependable welder who would come to the job instead of making people haul their equipment somewhere else.
+      </p>
+      
+      <p class="about-text">
+        That’s why I decided to bring mobile welding and fabrication straight to the customer.
+      </p>
+      
+      <p class="about-text">
+        From equipment repairs and structural welding to pipe work, pipeline welding, custom fabrication, emergency repairs, and general welding, my goal is simple: <strong>show up, find a solution, and do the job right.</strong>
+      </p>
+      
+      <p class="about-text">
+        I’m not trying to be the biggest welding company out there. I’m focused on building a company people can trust, depend on, and call when they need the job done right.
+      </p>
+      
+      <p class="about-text">
+        Every job matters, whether it’s a small repair or a major project. I take pride in my work, stand behind what I build, and appreciate every customer who gives Blair Welding &amp; Fab the opportunity to earn their business.
+      </p>
+      
+      <p class="about-text">
+        This is just the beginning, and I’m looking forward to building this company one job at a time.
+      </p>
+    </div>
+
+    <!-- Right Side: Cut-Corner Image -->
+    <div class="about-image-wrapper">
+      <img src="images/AaronBlair.jpg" alt="Aaron Blair Welding & Fabrication" class="about-img" />
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .trust-bar-section {
+    width: 100%;
+    padding: 70px 8%;
+    box-sizing: border-box;
+    background: var(--bg, #000);
+  }
+
+  .trust-bar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .trust-card {
+    background-color: var(--bg-card, #0b0b0b);
+    background-image: var(--grit-texture, url("images/texture.png"));
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    border: none;
+    border-radius: 0;
+    padding: 22px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text, #F4F4F5);
+    text-decoration: none;
+    clip-path: polygon(
+      var(--cut-sm, 10px) 0%, 
+      calc(100% - var(--cut-sm, 10px)) 0%, 
+      100% var(--cut-sm, 10px), 
+      100% calc(100% - var(--cut-sm, 10px)), 
+      calc(100% - var(--cut-sm, 10px)) 100%, 
+      var(--cut-sm, 10px) 100%, 
+      0% calc(100% - var(--cut-sm, 10px)), 
+      0% var(--cut-sm, 10px)
+    );
+  }
+
+  .trust-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent, #F5A623);
+  }
+
+  .trust-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .trust-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .trust-title {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.25;
+    color: var(--text, #F4F4F5);
+  }
+
+  .trust-sub {
+    font-size: 0.85rem;
+    line-height: 1.35;
+    color: var(--text-muted, #cbcbcb);
+    margin-top: 3px;
+  }
+
+  @media (max-width: 1024px) {
+    .trust-bar-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .trust-bar-section {
+      padding: 28px 6%;
+    }
+
+    .trust-bar-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>
+
+<section class="trust-bar-section" aria-label="Company Trust Highlights">
+  <div class="trust-bar-grid">
+
+    <!-- 1. Mobile Welding (We Come To You) -->
+    <div class="trust-card">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      </div>
+      <div class="trust-info">
+        <span class="trust-title">Mobile Service</span>
+        <span class="trust-sub">We Come Straight To Your Job</span>
+      </div>
+    </div>
+
+    <!-- 2. Field Tested Experience -->
+    <div class="trust-card">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="7"></circle>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+        </svg>
+      </div>
+      <div class="trust-info">
+        <span class="trust-title">Field Tested</span>
+        <span class="trust-sub">Heavy Equipment &amp; Pipeline Exp.</span>
+      </div>
+    </div>
+
+    <!-- 3. Local & Independent Owner-Operator -->
+    <div class="trust-card">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </div>
+      <div class="trust-info">
+        <span class="trust-title">Locally Owned</span>
+        <span class="trust-sub">Eastern Kentucky &amp; Surrounding Areas</span>
+      </div>
+    </div>
+
+    <!-- 4. Built to Work. Welded to Last. -->
+    <div class="trust-card">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <polyline points="9 12 11 14 15 10"></polyline>
+        </svg>
+      </div>
+      <div class="trust-info">
+        <span class="trust-title">Built to Last</span>
+        <span class="trust-sub">No Shortcuts. Quality Welds.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<style>
+  .services-grid-section {
+    width: 100%;
+    padding: 80px 8%;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  .services-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+
+  .services-heading {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .services-subtext {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 700px;
+  }
+
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Service Card with 4 Corners Clipped & No Borders / No Movement */
+  .service-card {
+    flex: 0 1 calc((100% - 48px) / 3);
+    max-width: calc((100% - 48px) / 3);
+    box-sizing: border-box;
+    background-color: var(--bg-card);
+    border: none;
+    padding: 0 !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    clip-path: polygon(
+      var(--cut-sm) 0%,
+      calc(100% - var(--cut-sm)) 0%,
+      100% var(--cut-sm),
+      100% calc(100% - var(--cut-sm)),
+      calc(100% - var(--cut-sm)) 100%,
+      var(--cut-sm) 100%,
+      0% calc(100% - var(--cut-sm)),
+      0% var(--cut-sm)
+    );
+  }
+
+  .service-img-wrap {
+    display: block;
+    width: 100%;
+    height: 220px;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background-color: #121212;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .service-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover .service-img {
+    transform: scale(1.04);
+  }
+
+  .service-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .service-title {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 20px 0;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  .service-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    clip-path: polygon(
+      var(--cut-xs) 0%,
+      calc(100% - var(--cut-xs)) 0%,
+      100% var(--cut-xs),
+      100% calc(100% - var(--cut-xs)),
+      calc(100% - var(--cut-xs)) 100%,
+      var(--cut-xs) 100%,
+      0% calc(100% - var(--cut-xs)),
+      0% var(--cut-xs)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .service-btn:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .service-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  /* Distinct CTA Card */
+  .service-card.cta-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: none;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cta-content {
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .cta-title {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+
+  .cta-desc {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+
+  .cta-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: var(--accent);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    clip-path: polygon(
+      var(--cut-sm) 0%,
+      calc(100% - var(--cut-sm)) 0%,
+      100% var(--cut-sm),
+      100% calc(100% - var(--cut-sm)),
+      calc(100% - var(--cut-sm)) 100%,
+      var(--cut-sm) 100%,
+      0% calc(100% - var(--cut-sm)),
+      0% var(--cut-sm)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .service-card.cta-card:hover .cta-btn {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .cta-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .services-grid {
+      gap: 20px;
+    }
+
+    .services-grid > .service-card {
+      flex: 0 1 calc((100% - 20px) / 2);
+      max-width: calc((100% - 20px) / 2);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid-section {
+      padding: 60px 6%;
+    }
+
+    .services-grid > .service-card {
+      flex: 0 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<section class="services-grid-section" id="services" aria-label="Our Welding and Fabrication Services">
+  <div class="services-header">
+    <h2 class="services-heading">Our Welding &amp; Fabrication Services</h2>
+    <p class="services-subtext">Professional mobile welding, structural repairs, custom metal work, and heavy equipment fixes delivered straight to your job site or farm across Eastern Kentucky.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- 1. Mobile Welding 
+    <article class="service-card">
+      <a href="services.html#mobile-welding" class="service-img-wrap">
+        <img src="images/mobile-welding.jpg" alt="Mobile Welding Service" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Mobile Welding</h3>
+        <a href="services.html#mobile-welding" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+
+
+    <!-- 3. Pipe & Pipeline Welding -->
+    <article class="service-card">
+      <a href="services.html#pipe-pipeline" class="service-img-wrap">
+        <img src="images/pipe-pipeline.jpg" alt="Pipe and Pipeline Welding" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Pipe &amp; Pipeline Welding</h3>
+        <a href="services.html#pipe-pipeline" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 4. Custom Fabrication -->
+    <article class="service-card">
+      <a href="services.html#custom-fabrication" class="service-img-wrap">
+        <img src="images/custom-fabrication.jpg" alt="Custom Metal Fabrication" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Custom Fabrication</h3>
+        <a href="services.html#custom-fabrication" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 5. Pipe Fence & Gates -->
+    <article class="service-card">
+      <a href="services.html#pipe-fence-gates" class="service-img-wrap">
+        <img src="images/pipe-fence.jpg" alt="Pipe Fence and Gates" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Pipe Fence &amp; Gates</h3>
+        <a href="services.html#pipe-fence-gates" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+	
+	
+	    <!-- 2. Structural & Pipe Welding -->
+    <article class="service-card">
+      <a href="services.html#structural-welding" class="service-img-wrap">
+        <img src="images/structural-welding.jpg" alt="Structural and Pipe Welding" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Structural</h3>
+        <a href="services.html#structural-welding" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 6. Farm & Heavy Equipment Repairs -->
+    <article class="service-card">
+      <a href="services.html#farm-heavy-equipment" class="service-img-wrap">
+        <img src="images/heavy-equipment.jpg" alt="Farm and Heavy Equipment Repairs" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Farm &amp; Heavy Equipment</h3>
+        <a href="services.html#farm-heavy-equipment" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 7. Trailer & Truck Repairs -->
+    <article class="service-card">
+      <a href="services.html#trailer-repairs" class="service-img-wrap">
+        <img src="images/trailer-repairs.jpg" alt="Trailer and Truck Repairs" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Trailer &amp; Truck Repairs</h3>
+        <a href="services.html#trailer-repairs" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 8. Emergency Welding Repairs 
+    <article class="service-card">
+      <a href="services.html#emergency-repairs" class="service-img-wrap">
+        <img src="images/emergency-repairs.jpg" alt="Emergency Welding Repairs" class="service-img" />
+      </a>
+      <div class="service-body">
+        <h3 class="service-title">Emergency Repairs &amp; More</h3>
+        <a href="services.html#emergency-repairs" class="service-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- 9. View All Services CTA Card -->
+    <article class="service-card cta-card">
+      <a href="services.html" class="cta-content">
+        <h3 class="cta-title">Need Something Custom?</h3>
+        <p class="cta-desc">Explore our complete range of structural, mobile, and specialized shop capabilities.</p>
+        <span class="cta-btn">
+          View All Services &amp; Details
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </article>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .gallery-grid-section {
+    width: 100%;
+    padding: 80px 8%;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  .gallery-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+
+  .gallery-heading {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gallery-subtext {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 700px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Borderless 4-corner cut cards matching .service-card */
+  .gallery-card {
+    position: relative;
+    background-color: var(--bg-card);
+    border: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    height: 260px;
+    cursor: pointer;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+  }
+
+  .gallery-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .gallery-card:hover .gallery-img {
+    transform: scale(1.04);
+  }
+
+  /* Subtle hover overlay with cut-corner textured zoom badge */
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 11, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .gallery-card:hover .gallery-overlay,
+  .gallery-card:focus-visible .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-zoom-badge {
+    width: 48px;
+    height: 48px;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+  }
+
+  .gallery-zoom-badge svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  /* Bottom CTA Button matching header & service buttons */
+  .gallery-footer {
+    max-width: 1280px;
+    margin: 40px auto 0;
+    text-align: center;
+  }
+
+  .gallery-cta-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .gallery-cta-btn:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .gallery-cta-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  /* Lightbox Modal */
+  .gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(10, 10, 11, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .gallery-lightbox.is-open {
+    display: flex;
+  }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 1000px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    display: block;
+    clip-path: polygon(
+      var(--cut-lg) 0%, 
+      calc(100% - var(--cut-lg)) 0%, 
+      100% var(--cut-lg), 
+      100% calc(100% - var(--cut-lg)), 
+      calc(100% - var(--cut-lg)) 100%, 
+      var(--cut-lg) 100%, 
+      0% calc(100% - var(--cut-lg)), 
+      0% var(--cut-lg)
+    );
+  }
+
+  .lightbox-caption {
+    font-family: "Chakra Petch", sans-serif;
+    margin-top: 16px;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  .lightbox-btn {
+    position: fixed;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    border: none;
+    color: #0A0A0B;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+    transition: background-color 0.2s ease;
+    z-index: 10001;
+  }
+
+  .lightbox-btn:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .lightbox-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  .lightbox-close {
+    top: 24px;
+    right: 24px;
+  }
+
+  .lightbox-prev {
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lightbox-next {
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gallery-grid-section {
+      padding: 60px 6%;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lightbox-prev {
+      left: 12px;
+    }
+
+    .lightbox-next {
+      right: 12px;
+    }
+  }
+</style>
+
+<section class="gallery-grid-section" id="gallery" aria-label="Our Work Gallery">
+  <div class="gallery-header">
+    <h2 class="gallery-heading">Our Work Gallery</h2>
+    <p class="gallery-subtext">Recent mobile welding, structural steel, pipeline, and custom fabrication projects across Eastern Kentucky.</p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- 1 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Mobile Field Welding photo">
+      <img src="images/gallery-1.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+
+    <!-- 2 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Structural Steel Welding photo">
+      <img src="images/gallery-2.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+
+    <!-- 3 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Pipe & Pipeline Welding photo">
+      <img src="images/gallery-3.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+
+    <!-- 4 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Custom Pipe Fence & Gate photo">
+      <img src="images/gallery-4.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+
+    <!-- 5 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Heavy Equipment Repair photo">
+      <img src="images/gallery-5.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+
+    <!-- 6 -->
+    <figure class="gallery-card" tabindex="0" role="button" aria-label="View Custom Metal Fabrication photo">
+      <img src="images/gallery-6.jpg" alt="" class="gallery-img" />
+      <div class="gallery-overlay">
+        <span class="gallery-zoom-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </span>
+      </div>
+    </figure>
+  </div>
+
+  <!-- See Full Gallery Button -->
+  <div class="gallery-footer">
+    <a href="gallery.html" class="gallery-cta-btn">
+      See Full Gallery
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image Preview">
+  <button type="button" class="lightbox-btn lightbox-close" id="lightboxClose" aria-label="Close lightbox">
+    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+
+  <button type="button" class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+
+  <div class="lightbox-inner">
+    <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <button type="button" class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Next image">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<script>
+  (function () {
+    const cards = Array.from(document.querySelectorAll('#galleryGrid .gallery-card'));
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = (index + cards.length) % cards.length;
+      const img = cards[currentIndex].querySelector('.gallery-img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = img.alt;
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => openLightbox(index));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(index);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', () => openLightbox(currentIndex - 1));
+    nextBtn.addEventListener('click', () => openLightbox(currentIndex + 1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
+    });
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .faq-section {
+    width: 100%;
+    padding: 80px 8%;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  .faq-header {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    text-align: left;
+  }
+
+  .faq-heading {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .faq-subtext {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* FAQ Accordion Item with 4 Corners Clipped */
+  .faq-item {
+    background-color: var(--bg-card);
+    border: none;
+    overflow: hidden;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .faq-item.active {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .faq-question-btn {
+    font-family: "Chakra Petch", sans-serif;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .faq-question-btn:hover {
+    color: var(--accent);
+  }
+
+  .faq-icon-wrap {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.06);
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+  }
+
+  .faq-item.active .faq-icon-wrap {
+    transform: rotate(45deg);
+    background: var(--accent);
+    color: #0A0A0B;
+  }
+
+  .faq-icon-wrap svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+  }
+
+  /* Smooth Grid Accordion Animation */
+  .faq-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-item.active .faq-answer-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-answer-inner {
+    overflow: hidden;
+  }
+
+  .faq-answer-content {
+    padding: 0 28px 24px 28px;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .faq-section {
+      padding: 60px 6%;
+    }
+
+    .faq-question-btn {
+      padding: 18px 20px;
+      font-size: 1rem;
+    }
+
+    .faq-answer-content {
+      padding: 0 20px 20px 20px;
+      font-size: 0.92rem;
+    }
+  }
+</style>
+
+<section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+  <div class="faq-header">
+    <h2 class="faq-heading">Frequently Asked Questions</h2>
+    <p class="faq-subtext">Got questions about our mobile service, turnaround times, or metal fabrication capabilities? Find direct answers below, or reach out anytime.</p>
+  </div>
+
+  <div class="faq-container">
+
+    <!-- FAQ Item 1 -->
+    <div class="faq-item">
+      <button class="faq-question-btn" aria-expanded="false">
+        <span>Do you travel to my location for mobile welding?</span>
+        <span class="faq-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+      <div class="faq-answer-wrapper">
+        <div class="faq-answer-inner">
+          <div class="faq-answer-content">
+            Yes. Blair Welding & Fabrication is fully equipped for mobile service. We bring our welding rig and gear straight to your job site, farm, shop, or roadside across Eastern Kentucky and surrounding areas to handle repairs on equipment, structural steel, or trailers on-site.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="faq-item">
+      <button class="faq-question-btn" aria-expanded="false">
+        <span>What counties and areas do you serve?</span>
+        <span class="faq-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+      <div class="faq-answer-wrapper">
+        <div class="faq-answer-inner">
+          <div class="faq-answer-content">
+            We proudly serve Johnson County, Floyd County, Lawrence County, Martin County, Magoffin County, Pike County, Boyd County, and Greenup County. Travel is also available for larger structural and pipeline jobs outside these immediate counties.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="faq-item">
+      <button class="faq-question-btn" aria-expanded="false">
+        <span>What types of materials and welding processes do you handle?</span>
+        <span class="faq-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+      <div class="faq-answer-wrapper">
+        <div class="faq-answer-inner">
+          <div class="faq-answer-content">
+            We handle structural steel, pipe and pipeline welding, heavy equipment steel repairs, custom fabrication, aluminum, and cast repairs. Whether it's heavy industrial work or custom shop fabrication, every weld is built to last.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="faq-item">
+      <button class="faq-question-btn" aria-expanded="false">
+        <span>Can you build custom metal items or fabrications from scratch?</span>
+        <span class="faq-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+      <div class="faq-answer-wrapper">
+        <div class="faq-answer-inner">
+          <div class="faq-answer-content">
+            Absolutely. From custom pipe gates and fences to one-of-a-kind builds (like custom grills, truck racks, and structural brackets), if you can dream it up, we can cut, weld, and build it to your exact specifications.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item 5 -->
+    <div class="faq-item">
+      <button class="faq-question-btn" aria-expanded="false">
+        <span>How do I get a quote or schedule a repair?</span>
+        <span class="faq-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+      <div class="faq-answer-wrapper">
+        <div class="faq-answer-inner">
+          <div class="faq-answer-content">
+            You can call or text us directly at <strong>606-331-0767</strong> or visit our <a href="quote.html" style="color: var(--accent); text-decoration: underline;">Get a Quote</a> page. Sending a clear picture of the broken part or project helps us evaluate the job and get you scheduled quickly.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question-btn');
+    
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
+      
+      // Optional: Close all other accordion items
+      faqItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+        otherItem.querySelector('.faq-question-btn').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle current item
+      if (!isOpen) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .service-area-section {
+    width: 100%;
+    padding: 80px 8%;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  .service-area-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+
+  .service-area-heading {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .service-area-subtext {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 720px;
+  }
+
+  .service-area-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  /* Borderless 4-corner cut cards matching .service-card & .gallery-card */
+  .area-card {
+    background-color: var(--bg-card);
+    border: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+  }
+
+  /* Map Container */
+  .area-map-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    background-color: #121212;
+  }
+
+  .area-map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    border: 0;
+    display: block;
+    filter: grayscale(25%) contrast(1.05);
+  }
+
+  /* =========================================================
+     TEMPORARY MAP OVERLAY (Delete this block when map is live)
+     ========================================================= */
+  .temp-map-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background-color: rgba(12, 12, 14, 0.82);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    text-align: center;
+  }
+
+  .temp-map-overlay-box {
+    max-width: 440px;
+    padding: 24px 28px;
+    background-color: rgba(24, 24, 28, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+  }
+
+  .temp-map-overlay-box p {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.55;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  /* ========================================================= */
+
+  /* County Links Panel */
+  .area-cities-body {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .area-cities-title {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 8px 0;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  .area-cities-desc {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .city-links-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .city-link-item a {
+    font-family: "Chakra Petch", sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .city-link-item a:hover {
+    background-color: rgba(40, 40, 40, 1);
+    color: var(--accent);
+  }
+
+  .city-link-item svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.3;
+  }
+
+  .area-footer-note {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .area-zip-text {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .area-cta-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    clip-path: polygon(
+      var(--cut-xs) 0%, 
+      calc(100% - var(--cut-xs)) 0%, 
+      100% var(--cut-xs), 
+      100% calc(100% - var(--cut-xs)), 
+      calc(100% - var(--cut-xs)) 100%, 
+      var(--cut-xs) 100%, 
+      0% calc(100% - var(--cut-xs)), 
+      0% var(--cut-xs)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .area-cta-btn:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .area-cta-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  @media (max-width: 1024px) {
+    .service-area-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .area-map-wrap,
+    .area-map-wrap iframe {
+      min-height: 320px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .service-area-section {
+      padding: 60px 6%;
+    }
+
+    .city-links-list {
+      grid-template-columns: 1fr;
+    }
+
+    .area-cities-body {
+      padding: 24px 20px;
+    }
+  }
+</style>
+
+<section class="service-area-section" id="service-areas" aria-label="Service Areas and Coverage Map">
+  <div class="service-area-header">
+    <h2 class="service-area-heading">Areas We Serve in Eastern Kentucky</h2>
+    <p class="service-area-subtext">Blair Welding &amp; Fabrication brings full-service mobile welding, structural steel work, pipeline repairs, and custom fabrication straight to your job site, farm, or shop.</p>
+  </div>
+
+  <div class="service-area-layout">
+    <!-- Left Card: Embedded Google Map centered on Eastern Kentucky -->
+    <div class="area-card">
+      <div class="area-map-wrap">
+        
+        <!-- START TEMPORARY MAP OVERLAY: Delete this div block to reveal the live map -->
+        <div class="temp-map-overlay">
+          <div class="temp-map-overlay-box">
+            <p>This space will display your service area map once your Google Business Profile is set up if you decide to go forward with the site, I'll help you get that set up.</p>
+          </div>
+        </div>
+        <!-- END TEMPORARY MAP OVERLAY -->
+
+        <iframe
+          src="https://maps.google.com/maps?q=Paintsville%20KY&t=&z=9&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Blair Welding & Fabrication Eastern Kentucky Service Area Map">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Right Card: Eastern Kentucky Counties -->
+    <nav class="area-card area-cities-body" aria-label="Eastern Kentucky Service Area Counties">
+      <div>
+        <h3 class="area-cities-title">Mobile Welding Near You</h3>
+        <p class="area-cities-desc">On-site welding, heavy equipment repair, and custom metal fabrication across the following counties:</p>
+      </div>
+
+      <ul class="city-links-list">
+        <li class="city-link-item">
+          <a href="service-areas.html#johnson-county" title="Mobile Welding in Johnson County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Johnson County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#floyd-county" title="Mobile Welding in Floyd County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Floyd County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#lawrence-county" title="Mobile Welding in Lawrence County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Lawrence County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#martin-county" title="Mobile Welding in Martin County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Martin County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#magoffin-county" title="Mobile Welding in Magoffin County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Magoffin County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#pike-county" title="Mobile Welding in Pike County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Pike County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#boyd-county" title="Mobile Welding in Boyd County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Boyd County</span>
+          </a>
+        </li>
+        <li class="city-link-item">
+          <a href="service-areas.html#greenup-county" title="Mobile Welding in Greenup County, KY">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span>Greenup County</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="area-footer-note">
+        <p class="area-zip-text">Don't see your county or job site listed? We travel throughout surrounding Eastern Kentucky communities.</p>
+        <a href="quote.html" class="area-cta-btn">
+          Check Availability
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<style>
+  .cta-banner-section {
+    width: 100%;
+    padding: 80px 8%;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  .cta-banner-card {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border: none;
+    padding: 60px 48px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    clip-path: polygon(
+      var(--cut-lg) 0%, 
+      calc(100% - var(--cut-lg)) 0%, 
+      100% var(--cut-lg), 
+      100% calc(100% - var(--cut-lg)), 
+      calc(100% - var(--cut-lg)) 100%, 
+      var(--cut-lg) 100%, 
+      0% calc(100% - var(--cut-lg)), 
+      0% var(--cut-lg)
+    );
+  }
+
+  .cta-banner-heading {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+    
+    background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    max-width: 800px;
+  }
+
+  .cta-banner-subtext {
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0 0 36px 0;
+    color: var(--text-muted);
+    max-width: 700px;
+  }
+
+  .cta-banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* Primary Get a Quote Button */
+  .cta-banner-btn {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: var(--btn-bg);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+    color: #0A0A0B;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+    transition: background-color 0.25s ease;
+  }
+
+  .cta-banner-btn:hover {
+    background: var(--accent-hover);
+    background-image: var(--grit-texture);
+    background-size: 140px 140px;
+    background-blend-mode: multiply;
+  }
+
+  .cta-banner-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+  }
+
+  /* Secondary Phone Button */
+  .cta-banner-phone {
+    font-family: "Chakra Petch", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    color: #FFFFFF;
+    clip-path: polygon(
+      var(--cut-sm) 0%, 
+      calc(100% - var(--cut-sm)) 0%, 
+      100% var(--cut-sm), 
+      100% calc(100% - var(--cut-sm)), 
+      calc(100% - var(--cut-sm)) 100%, 
+      var(--cut-sm) 100%, 
+      0% calc(100% - var(--cut-sm)), 
+      0% var(--cut-sm)
+    );
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .cta-banner-phone:hover {
+    background: rgba(40, 40, 40, 1);
+    color: var(--accent);
+  }
+
+  .cta-banner-phone svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.2;
+  }
+
+  @media (max-width: 640px) {
+    .cta-banner-section {
+      padding: 60px 6%;
+    }
+
+    .cta-banner-card {
+      padding: 40px 24px;
+    }
+
+    .cta-banner-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .cta-banner-btn,
+    .cta-banner-phone {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<section class="cta-banner-section" aria-label="Request a Welding Quote">
+  <div class="cta-banner-card">
+    <h2 class="cta-banner-heading">Need Dependable Mobile Welding or Custom Fabrication?</h2>
+    <p class="cta-banner-subtext">Don't let broken steel slow you down. Contact Blair Welding &amp; Fabrication today for fast on-site repairs, structural welding, and custom fabrication across Eastern Kentucky.</p>
+
+    <div class="cta-banner-actions">
+      <a href="quote.html" class="cta-banner-btn">
+        Get a quote
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a href="tel:6063310767" class="cta-banner-phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        606-331-0767
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* ================= FOOTER SYSTEM STYLES ================= */
+.site-footer {
+  background: var(--bg-card, #0b0b0b);
+  background-image: var(--grit-texture, url("images/texture.png"));
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  color: var(--text, #F4F4F5);
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.15));
+  padding: 64px 0 32px 0;
+  margin-top: auto;
+  position: relative;
+}
+
+/* Subtle top amber accent bar */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1440px, calc(100% - 64px));
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent, #F5A623), transparent);
+}
+
+.footer-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr 0.95fr 1.15fr 1.1fr;
+  gap: 40px;
+}
+
+/* LEFT COLUMN: BRAND & CONTACT INFO */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer-logo-link {
+  display: inline-block;
+  width: fit-content;
+}
+
+.footer-logo-img {
+  height: 110px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+.footer-tagline {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent, #F5A623);
+  line-height: 1.4;
+}
+
+.footer-contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-phone,
+.footer-email {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  color: var(--text, #F4F4F5);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.footer-phone:hover,
+.footer-email:hover {
+  color: var(--accent, #F5A623);
+}
+
+.footer-phone svg,
+.footer-email svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent, #F5A623);
+  fill: none;
+  stroke-width: 2.2;
+  flex-shrink: 0;
+}
+
+.footer-address {
+  text-decoration: none;
+  color: var(--text-muted, #cbcbcb);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+  transition: color 0.2s ease;
+}
+
+.footer-address:hover {
+  color: var(--accent, #F5A623);
+}
+
+.footer-address svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent, #F5A623);
+  fill: none;
+  stroke-width: 2.2;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* CUT-CORNER FACEBOOK BADGE */
+.footer-facebook {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  color: var(--text, #F4F4F5);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  clip-path: polygon(
+    var(--cut-sm, 10px) 0%, 
+    calc(100% - var(--cut-sm, 10px)) 0%, 
+    100% var(--cut-sm, 10px), 
+    100% calc(100% - var(--cut-sm, 10px)), 
+    calc(100% - var(--cut-sm, 10px)) 100%, 
+    var(--cut-sm, 10px) 100%, 
+    0% calc(100% - var(--cut-sm, 10px)), 
+    0% var(--cut-sm, 10px)
+  );
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-facebook:hover {
+  color: var(--accent, #F5A623);
+  background: rgba(40, 40, 40, 1);
+}
+
+.footer-facebook svg {
+  width: 17px;
+  height: 17px;
+  fill: var(--accent, #F5A623);
+  flex-shrink: 0;
+}
+
+/* COLUMN HEADINGS */
+.footer-column-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-column-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* BUSINESS HOURS & AVAILABILITY COLUMN */
+.footer-hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-hours-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.footer-hours-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-hours-list span.day {
+
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--text, #F4F4F5);
+}
+
+.footer-emergency-badge {
+  margin-top: 16px;
+  padding: 10px 14px;
+
+  border: 3px solid var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent, #F5A623);
+  line-height: 1.35;
+}
+
+/* NAV COLUMNS */
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-muted, #cbcbcb);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--accent, #F5A623);
+  transform: translateX(4px);
+}
+
+/* FEATURED HEADER LINKS STYLING */
+.footer-links .footer-featured-link {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  color: var(--accent, #F5A623);
+}
+
+.footer-links .footer-featured-link:hover {
+  color: var(--accent-hover, #fff);
+}
+
+.footer-links .footer-divider {
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.15));
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+/* CUT-CORNER CTA BUTTON IN FOOTER */
+.footer-quote-btn {
+  font-family: "Chakra Petch", sans-serif;
+  text-decoration: none;
+  background: var(--btn-bg, #F5A623);
+  background-image: var(--grit-texture, url("images/texture.png"));
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  color: #0A0A0B !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 18px;
+  margin-top: 6px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  clip-path: polygon(
+    var(--cut-sm, 10px) 0%, 
+    calc(100% - var(--cut-sm, 10px)) 0%, 
+    100% var(--cut-sm, 10px), 
+    100% calc(100% - var(--cut-sm, 10px)), 
+    calc(100% - var(--cut-sm, 10px)) 100%, 
+    var(--cut-sm, 10px) 100%, 
+    0% calc(100% - var(--cut-sm, 10px)), 
+    0% var(--cut-sm, 10px)
+  );
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.footer-quote-btn:hover {
+  background: var(--accent-hover, #fff);
+  background-image: var(--grit-texture, url("images/texture.png"));
+  background-size: 140px 140px;
+  background-blend-mode: multiply;
+  color: #0A0A0B !important;
+  transform: translateX(0) !important;
+}
+
+.footer-quote-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+}
+
+/* CENTERED BOTTOM BAR */
+.footer-bottom {
+  max-width: 1440px;
+  margin: 48px auto 0 auto;
+  padding: 24px 32px 0 32px;
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.15));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted, #cbcbcb);
+}
+
+.footer-bottom a {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--accent, #F5A623);
+}
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 1200px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+</style>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-link" aria-label="Home">
+        <img src="images/Logo.png" class="footer-logo-img" alt="Blair Welding & Fabrication LLC Logo" />
+      </a>
+
+      <p class="footer-tagline">Built to Work. Welded to Last.</p>
+      
+      <div class="footer-contact-block">
+        <a href="tel:6063310767" class="footer-phone">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call / Text: 606-331-0767
+        </a>
+		
+		<a href="mailto:Blairweldingandfabllc@gmail.com" class="footer-email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Blairweldingandfabllc@gmail.com
+        </a>
+
+
+
+        <a href="service-areas.html" class="footer-address">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Mobile Service — Eastern Kentucky &amp; Surrounding Areas</span>
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61593058877699" target="_blank" rel="noopener noreferrer" class="footer-facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Follow us on Facebook
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-hours">
+      <h3 class="footer-column-title">Availability</h3>
+      <ul class="footer-hours-list">
+        <li>
+          <span class="day">Mon – Fri</span>
+          <span>7:00 AM – 6:00 PM</span>
+        </li>
+        <li>
+          <span class="day">Saturday</span>
+          <span>By Appointment</span>
+        </li>
+        <li>
+          <span class="day">Sunday</span>
+          <span>Emergency Calls Only</span>
+        </li>
+      </ul>
+      <div class="footer-emergency-badge">
+        Mobile &amp; Emergency Welding Available
+      </div>
+    </div>
+
+    <div>
+      <h3 class="footer-column-title">Company</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+
+        <li><a href="about.html">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li>
+          <a href="quote.html" class="footer-quote-btn">
+            Get a Quote
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-column-title">Services</h3>
+      <ul class="footer-links">
+        <li class="footer-divider"><a href="services.html" class="footer-featured-link">All Services &rarr;</a></li>
+        <li><a href="services.html#mobile-welding">Mobile welding</a></li>
+        <li><a href="services.html#structural-welding">Structural welding</a></li>
+        <li><a href="services.html#pipe-pipeline">Pipe &amp; pipeline welding</a></li>
+        <li><a href="services.html#custom-fabrication">Custom fabrication</a></li>
+        <li><a href="services.html#pipe-fence-gates">Pipe fence &amp; gates</a></li>
+        <li><a href="services.html#farm-heavy-equipment">Farm &amp; heavy equipment repairs</a></li>
+        <li><a href="services.html#emergency-repairs">Emergency welding repairs</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-column-title">Areas We Serve</h3>
+      <ul class="footer-links">
+        <li class="footer-divider"><a href="service-areas.html" class="footer-featured-link">All Service Areas &rarr;</a></li>
+        <li><a href="service-areas.html#johnson-county">Johnson County</a></li>
+        <li><a href="service-areas.html#floyd-county">Floyd County</a></li>
+        <li><a href="service-areas.html#lawrence-county">Lawrence County</a></li>
+        <li><a href="service-areas.html#martin-county">Martin County</a></li>
+        <li><a href="service-areas.html#magoffin-county">Magoffin County</a></li>
+        <li><a href="service-areas.html#pike-county">Pike County</a></li>
+        <li><a href="service-areas.html#boyd-county">Boyd County</a></li>
+        <li><a href="service-areas.html#greenup-county">Greenup County</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Blair Welding &amp; Fabrication LLC. All rights reserved. &bull; <a href="privacy.html">Privacy Policy</a></p>
+    <p>Site by <a href="https://portfolio.stefanswebdesigns.workers.dev/" target="_blank" rel="noopener noreferrer">Stefan's Web Designs</a></p>
+  </div>
+</footer>

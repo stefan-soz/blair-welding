@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Blair Welding &amp; Fabrication LLC</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+    /* ================= SYSTEM DESIGN TOKENS ================= */
+    :root {
+      --bg: #000;
+      --text: #F4F4F5;
+      --text-muted: #cbcbcb;
+      --accent: #F5A623;            
+      --accent-hover: #fff;        
+      --glass: rgba(18, 18, 18, 1);
+      --border: transparent;
+      --bg-card: #0b0b0b;
+      --focus-ring: #F5A623;
+      
+      --btn-bg: #F5A623;
+      --btn-border: transparent;
+
+      /* CUT CORNER TOKENS */
+      --cut-lg: 18px;
+      --cut-sm: 10px;
+      --cut-xs: 6px;
+      --grit-texture: url("images/texture.png");
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 500;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+    }
+
+    /* ================= HEADER ================= */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--glass);
+        background-image: var(--grit-texture);
+        background-size: 140px 140px;
+        background-blend-mode: multiply;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: none;
+        padding: 16px 24px;
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .back-btn {
+        font-family: "Chakra Petch", sans-serif;
+        text-decoration: none;
+        background: var(--btn-bg);
+        background-image: var(--grit-texture);
+        background-size: 140px 140px;
+        background-blend-mode: multiply;
+        color: #0A0A0B;
+        font-size: 0.84rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 12px 22px;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        clip-path: polygon(
+            var(--cut-sm) 0%, 
+            calc(100% - var(--cut-sm)) 0%, 
+            100% var(--cut-sm), 
+            100% calc(100% - var(--cut-sm)), 
+            calc(100% - var(--cut-sm)) 100%, 
+            var(--cut-sm) 100%, 
+            0% calc(100% - var(--cut-sm)), 
+            0% var(--cut-sm)
+        );
+        transition: background-color .25s ease;
+        z-index: 2;
+    }
+
+    .back-btn:hover {
+        background: var(--accent-hover);
+        background-image: var(--grit-texture);
+        background-size: 140px 140px;
+        background-blend-mode: multiply;
+        border: none;
+    }
+
+    .back-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.4;
+    }
+
+    .header-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-logo img {
+        max-height: 48px;
+        width: auto;
+        display: block;
+    }
+
+    .header-spacer {
+        width: 120px;
+        z-index: 2;
+    }
+
+    /* ================= CONTAINER & LAYOUT ================= */
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 60px 20px 80px 20px;
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ================= THANK YOU CARD ================= */
+    .thank-you-card {
+        background-color: var(--bg-card);
+        background-image: var(--grit-texture);
+        background-size: 140px 140px;
+        background-blend-mode: multiply;
+        border: none;
+        padding: 52px 36px;
+        text-align: center;
+        width: 100%;
+        clip-path: polygon(
+            var(--cut-lg) 0%, 
+            calc(100% - var(--cut-lg)) 0%, 
+            100% var(--cut-lg), 
+            100% calc(100% - var(--cut-lg)), 
+            calc(100% - var(--cut-lg)) 100%, 
+            var(--cut-lg) 100%, 
+            0% calc(100% - var(--cut-lg)), 
+            0% var(--cut-lg)
+        );
+    }
+
+    .success-icon {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(245, 166, 35, 0.1);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px auto;
+        color: var(--accent);
+        clip-path: polygon(
+            var(--cut-sm) 0%, 
+            calc(100% - var(--cut-sm)) 0%, 
+            100% var(--cut-sm), 
+            100% calc(100% - var(--cut-sm)), 
+            calc(100% - var(--cut-sm)) 100%, 
+            var(--cut-sm) 100%, 
+            0% calc(100% - var(--cut-sm)), 
+            0% var(--cut-sm)
+        );
+    }
+
+    .success-icon svg {
+        width: 32px;
+        height: 32px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .thank-you-card h1 {
+        font-family: "Chakra Petch", sans-serif;
+        font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin-bottom: 14px;
+        background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+        background-size: 140px 140px;
+        background-blend-mode: multiply;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+
+    .thank-you-card p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    .concept-notice {
+        background-color: rgba(255, 255, 255, 0.04);
+        border: none;
+        padding: 16px 20px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 36px;
+        clip-path: polygon(
+            var(--cut-xs) 0%, 
+            calc(100% - var(--cut-xs)) 0%, 
+            100% var(--cut-xs), 
+            100% calc(100% - var(--cut-xs)), 
+            calc(100% - var(--cut-xs)) 100%, 
+            var(--cut-xs) 100%, 
+            0% calc(100% - var(--cut-xs)), 
+            0% var(--cut-xs)
+        );
+    }
+
+    .concept-notice strong {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+        .header-spacer {
+            display: none;
+        }
+        .thank-you-card {
+            padding: 36px 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER WITH CENTERED LOGO AND BACK BUTTON -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="back-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Home
+            </a>
+            
+            <a href="index.html" class="header-logo">
+                <img src="images/Logo2.png" alt="Blair Welding &amp; Fabrication Logo">
+            </a>
+
+            <div class="header-spacer"></div>
+        </div>
+    </header>
+
+    <!-- THANK YOU CONTENT CONTAINER -->
+    <main class="container">
+        <div class="thank-you-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            
+            <h1>Request Received!</h1>
+            <p>We received your request and we will respond within 24 hours.</p>
+            
+            <div class="concept-notice">
+                <span><strong>Note:</strong> This is a concept site so the form was sent to Stefan's Web Designs.</span>
+            </div>
+
+            <a href="index.html" class="back-btn" style="width: 100%; max-width: 280px; margin: 0 auto;">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Home
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

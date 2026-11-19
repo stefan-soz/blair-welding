@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept Site — Blair Welding &amp; Fabrication LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+     <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    :root {
+      --bg: #000;
+      --text: #F4F4F5;
+      --text-muted: #cbcbcb;
+      --accent: #F5A623;
+      --accent-hover: #fff;
+      --glass: rgba(18, 18, 18, 1);
+      --border: rgba(255, 255, 255, 0.15);
+      --bg-card: #0b0b0b;
+      --focus-ring: #F5A623;
+      --btn-bg: #F5A623;
+      --cut-lg: 18px;
+      --cut-sm: 10px;
+      --grit-texture: url("images/texture.png");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Chakra Petch", sans-serif;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .concept-card {
+      background-color: var(--bg-card);
+      background-image: var(--grit-texture);
+      background-size: 140px 140px;
+      background-blend-mode: multiply;
+      max-width: 520px;
+      width: 100%;
+      padding: 48px 36px;
+      text-align: center;
+      position: relative;
+      clip-path: polygon(
+        var(--cut-lg) 0%, 
+        calc(100% - var(--cut-lg)) 0%, 
+        100% var(--cut-lg), 
+        100% calc(100% - var(--cut-lg)), 
+        calc(100% - var(--cut-lg)) 100%, 
+        var(--cut-lg) 100%, 
+        0% calc(100% - var(--cut-lg)), 
+        0% var(--cut-lg)
+      );
+    }
+
+    .concept-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(245, 166, 35, 0.1);
+      padding: 6px 14px;
+      margin-bottom: 18px;
+      clip-path: polygon(
+        6px 0%, 
+        calc(100% - 6px) 0%, 
+        100% 6px, 
+        100% calc(100% - 6px), 
+        calc(100% - 6px) 100%, 
+        6px 100%, 
+        0% calc(100% - 6px), 
+        0% 6px
+      );
+    }
+
+    h1 {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(1.35rem, 3vw, 1.65rem);
+      line-height: 1.25;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      background-image: linear-gradient(var(--accent), var(--accent)), var(--grit-texture);
+      background-size: 140px 140px;
+      background-blend-mode: multiply;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: "Chakra Petch", sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px 24px;
+      background: var(--btn-bg);
+      background-image: var(--grit-texture);
+      background-size: 140px 140px;
+      background-blend-mode: multiply;
+      color: #0A0A0B;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      clip-path: polygon(
+        var(--cut-sm) 0%, 
+        calc(100% - var(--cut-sm)) 0%, 
+        100% var(--cut-sm), 
+        100% calc(100% - var(--cut-sm)), 
+        calc(100% - var(--cut-sm)) 100%, 
+        var(--cut-sm) 100%, 
+        0% calc(100% - var(--cut-sm)), 
+        0% var(--cut-sm)
+      );
+      transition: background-color 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      background-image: var(--grit-texture);
+      background-size: 140px 140px;
+      background-blend-mode: multiply;
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.4;
+    }
+
+    @media (max-width: 480px) {
+      .concept-card {
+        padding: 36px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="concept-card">
+
+    <h1>This is a concept site, so I have not made all the pages yet.</h1>
+    <p>These are the pages I have made:</p>
+    <div class="button-group">
+      <a href="index.html" class="btn">
+        Main Page
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="quote.html" class="btn">
+        Get Quote Page
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Allow all search engine crawlers access to the site
+User-agent: *
+Allow: /
+
+# Block private or non-public directories (uncomment or edit as needed)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+Disallow: /cdn-cgi/
+
+# Point search engines to your XML sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
